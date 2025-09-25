@@ -4,7 +4,7 @@
 
 <h1>Movies</h1>
 
-<table class-"movies">
+<table class="movies">
   <thead>
     <tr>
       <th scope="col">Title</th>
@@ -21,16 +21,15 @@
         <td><%= m.rating %></td>
         <td><%= m.release_date&.to_date %></td>
         <td class="actions">
-          <%= link_to "Show this movie", m %> .
-          <%= link_to "Edit", edit_movie_path(m) %> .
+          <%= link_to "Show this movie", m %>
         </td>
       </tr>
-    <<% end %>>
+    <% end %>
   </tbody>
 
   <tfoot>
     <tr>
-      <tf colspan="4"><%= pluralize(@movies.size, "movie") %></td>
+      <td colspan="4"><%= pluralize(@movies.size, "movie") %></td>
     </tr>
   </tfoot>
 </table>
