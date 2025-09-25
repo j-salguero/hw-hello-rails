@@ -4,13 +4,37 @@
 
 <h1>Movies</h1>
 
-<div id="movies">
-  <% @movies.each do |movie| %>
-    <%= render movie %>
-    <p>
-      <%= link_to "Show this movie", movie %>
-    </p>
-  <% end %>
-</div>
+<table class-"movies">
+  <thead>
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col">Rating</th>
+      <th scope="col">Release Date</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
 
-<%= link_to "New movie", new_movie_path %>
+  <tbody>
+    <% @movies.each do |m| %>
+      <tr>
+        <td><%= m.title %></td>
+        <td><%= m.rating %></td>
+        <td><%= m.release_date&.to_date %></td>
+        <td class="actions">
+          <%= link_to "Show this movie", m %> .
+          <%= link_to "Edit", edit_movie_path(m) %> .
+        </td>
+      </tr>
+    <<% end %>>
+  </tbody>
+
+  <tfoot>
+    <tr>
+      <tf colspan="4"><%= pluralize(@movies.size, "movie") %></td>
+    </tr>
+  </tfoot>
+</table>
+
+<p class="toolbar">
+  <%= link_to "New movie", new_movie_path, class: "button" %>
+</p>
