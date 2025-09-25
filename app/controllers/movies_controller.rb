@@ -71,9 +71,9 @@ end
 
 def sort_col
     allowed = %w[title rating release_date] # don't want to sort by Actions
-    session[:sort] = params[:sort] if allowed.include?(params[:sort]) #sort columns
-    session[:dir] = params[:dir] if %w[asc desc].include?(params[:dir]) #direction of sorting
-    #defaults
+    session[:sort] = params[:sort] if allowed.include?(params[:sort]) # sort columns
+    session[:dir] = params[:dir] if %w[asc desc].include?(params[:dir]) # direction of sorting
+    # defaults
     @sort = session[:sort] || "title"
     @dir = session[:dir] || "asc"
     @movies = Movie.order(@sort => (@dir == "desc" ? :desc : :asc))
