@@ -3,7 +3,12 @@ class MoviesController < ApplicationController
 
   # GET /movies or /movies.json
   def index
-    @movies = Movie.all
+    allowed = %w[title rating release_date] # don't want to sort by Actions
+    session[:sort] = params[:sort] if allowed.include?(params[:sort]) # sort columns
+    session[:dir] = params[:dir] if %w[asc desc].include?(params[:dir]) # direction >    # defaults
+    @sort = session[:sort] || "title"
+    @dir = session[:dir] || "asc"
+    @movies = Movie.order(@sort => (@dir == "desc" ? :desc : :asc))
   end
 
   # GET /movies/1 or /movies/1.json
@@ -67,14 +72,4 @@ class MoviesController < ApplicationController
     def movie_params
       params.expect(movie: [ :title, :rating, :description, :release_date ])
     end
-end
-
-def sort_col
-    allowed = %w[title rating release_date] # don't want to sort by Actions
-    session[:sort] = params[:sort] if allowed.include?(params[:sort]) # sort columns
-    session[:dir] = params[:dir] if %w[asc desc].include?(params[:dir]) # direction of sorting
-    # defaults
-    @sort = session[:sort] || "title"
-    @dir = session[:dir] || "asc"
-    @movies = Movie.order(@sort => (@dir == "desc" ? :desc : :asc))
 end
