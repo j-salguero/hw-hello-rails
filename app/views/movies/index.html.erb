@@ -7,12 +7,21 @@
 <table class="movies">
   <thead>
     <tr>
-      <th scope="col">Title</th>
-      <th scope="col">Rating</th>
-      <th scope="col">Release Date</th>
+      <th scope="col" class="<% (@sort == 'title' && @dir == 'asc') ? 'sorted-asc' : (@sort == 'title' && @dir == 'desc' ? 'sorted-desc' : '') %>">
+        <%= link_to "Title#{@sort=='title' ? (@dir=='asc' ? '^' : 'ᐯ') : ''}".html_safe,
+                  movies_path(sort: "title", dir: (@sort=='title' && @dir=='asc') ? "desc" : "asc") %>
+      </th>
+      <th scope="col" class="<%= (@sort == 'rating' && @dir == 'asc') ? 'sorted-asc' : (@sort == 'rating' && @dir == 'desc' ? 'sorted-desc' : '') %>">
+        <%= link_to "Rating#{@sort=='rating' ? (@dir=='asc' ? '^' : 'ᐯ') : ''}".html_safe,
+                  movies_path(sort: "rating", dir: (@sort=='rating' && @dir=='asc') ? "desc" : "asc") %>
+      </th>
+      <th scope="col" class="<%= (@sort == 'release_date' && @dir == 'asc') ? 'sorted-asc' : (@sort == 'release_date' && @dir == 'desc' ? 'sorted-desc' : '') %>">
+        <%= link_to "Release date#{@sort=='release_date' ? (@dir=='asc' ? '^' : 'ᐯ') : ''}".html_safe,
+                  movies_path(sort: "release_date", dir: (@sort=='release_date' && @dir=='asc') ? "desc" : "asc") %>
+      </th>
       <th scope="col">Actions</th>
-    </tr>
-  </thead>
+  </tr>
+</thead>
 
   <tbody>
     <% @movies.each do |m| %>
