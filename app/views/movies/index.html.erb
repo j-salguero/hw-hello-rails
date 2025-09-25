@@ -22,6 +22,8 @@
         <td><%= m.release_date&.to_date %></td>
         <td class="actions">
           <%= link_to "Show this movie", m %>
+          <%= link_to "Edit", edit_movie_path(m) %>
+          <%= link_to "Destroy", m, data: { turbo_method: :delete, turbo_confirm: "Delete movie?" } %>
         </td>
       </tr>
     <% end %>
