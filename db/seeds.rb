@@ -22,7 +22,7 @@ more_movies = [
   { title: "10 Things I Hate About You", rating: "PG-13",
     release_date: "31-March-1999" },
   { title: "The Devil Weards Prada", rating: "PG-13",
-    release_data: "30-June-2006" } 
+    release_data: "30-June-2006" }
 ]
 
 more_movies.each do |movie|
